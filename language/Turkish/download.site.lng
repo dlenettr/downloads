@@ -1,0 +1,15 @@
+<?php
+/*
+Translator info
+*/
+
+$lang = array_merge( $lang, array(
+'dwn_0'  => "Üzgünüz, link ulaşımında bir hata var.",
+'dwn_1'  => "Üzgünüz, ulaşmaya çalıştığınız dosya bulunamadı.",
+'dwn_2'  => "Dosya Bulunamadı",
+'dwn_3'  => "Üzgünüz, gerekli bilgiler eksik olduğu için indirme sayfasını görüntüleyemezsiniz.",
+'dwn_4'  => "Bilgiler Eksik",
+'dwn_5'  => "Hata",
+) );
+
+?>

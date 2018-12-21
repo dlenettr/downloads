@@ -1,0 +1,15 @@
+<?php
+/*
+Translator info
+*/
+
+$lang = array_merge( $lang, array(
+'dwn_0'  => "Sorry, link is not accessible.",
+'dwn_1'  => "Sorry, file not found.",
+'dwn_2'  => "File not found",
+'dwn_3'  => "Sorry, missing some informations.",
+'dwn_4'  => "Missing some informations",
+'dwn_5'  => "Error",
+) );
+
+?>

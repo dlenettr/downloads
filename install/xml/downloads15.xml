@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+	<id>Downloads</id>
+	<version>1.6</version>
+	<vqmver>2.4.1</vqmver>
+	<author>MaRZoCHi</author>
+	<file name=".htaccess">
+		<operation>
+			<ignoreif><![CDATA[# Downloads]]></ignoreif>
+			<search position="after"><![CDATA[RewriteEngine On]]></search>
+			<add><![CDATA[
+# Downloads
+RewriteRule ^download/([0-9]+)/?(static)?$ engine/download.php?id=$1&area=$2 [L]
+RewriteRule ^file/([0-9]+)$ index.php?do=download&id=$1 [L]
+RewriteRule ^file/([a-z0-9]{32})$ index.php?do=download&hash=$1 [L]
+RewriteRule ^file/([a-zA-Z0-9\w\-\.]+)$ index.php?do=download&name=$1 [L]
+RewriteRule ^sfile/([0-9]+)$ index.php?do=download&id=$1&area=static [L]
+RewriteRule ^sfile/([a-z0-9]{32})$ index.php?do=download&hash=$1&area=static [L]
+RewriteRule ^sfile/([a-zA-Z0-9\w\-\.]+)$ index.php?do=download&name=$1&area=static [L]
+]]></add>
+		</operation>
+	</file>
+	<file name="engine/engine.php">
+		<operation>
+			<ignoreif><![CDATA[case "download"]]></ignoreif>
+			<search position="before"><![CDATA[case "changemail" :]]></search>
+			<add><![CDATA[
+// Downloads
+	case "download" :
+		include ENGINE_DIR . '/modules/download.php';
+		break;
+// Downloads
+]]></add>
+		</operation>
+		<operation>
+			<ignoreif><![CDATA[elseif ($do == 'download') {]]></ignoreif>
+			<search position="after"><![CDATA[elseif ($do == 'tags') $nam_e = stripslashes($tag);]]></search>
+			<add><![CDATA[
+// Downloads
+elseif ($do == 'download') {
+	$nam_e = $dset['name'];
+	$titl_e = $dset['title'];
+	$metatags['header_title'] = $dset['header_title'];
+}
+// Downloads
+]]></add>
+		</operation>
+	</file>
+	<file name="engine/modules/functions.php">
+		<operation>
+			<ignoreif><![CDATA[include ENGINE_DIR . "/modules/download.func.php";]]></ignoreif>
+			<search position="before"><![CDATA[$story = str_replace ( $find_1, $replace_1, $story );]]></search>
+			<add><![CDATA[
+// Downloads
+	include ENGINE_DIR . "/modules/download.func.php";
+// Downloads
+]]></add>
+		</operation>
+		<operation>
+			<ignoreif><![CDATA[global $db, $config, $lang, $user_group, $member_id, $_TIME, $news_date, $file_names;]]></ignoreif>
+			<search position="replace"><![CDATA[global $db, $config, $lang, $user_group, $member_id, $_TIME, $news_date;]]></search>
+			<add><![CDATA[global $db, $config, $lang, $user_group, $member_id, $_TIME, $news_date, $file_names;]]></add>
+		</operation>
+		<operation>
+			<ignoreif><![CDATA[$file_names[ $row['id'] ] = $db->safesql( $row['name'] );]]></ignoreif>
+			<search position="after"><![CDATA[$find_2[] = "#\[attachment={$row['id']}:(.+?)\]#i";]]></search>
+			<add><![CDATA[$file_names[ $row['id'] ] = $db->safesql( $row['name'] );]]></add>
+		</operation>
+
+	</file>
+</modification>
