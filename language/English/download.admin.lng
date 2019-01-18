@@ -6,8 +6,6 @@ Translator info
 $lang = array_merge( $lang, array(
 'dwn_0'  => "You can provide to downloading the files that uploaded to your site, on a separate page",
 'dwn_1'  => "System Settings",
-'dwn_2'  => "Activate Module",
-'dwn_3'  => "You can switch the module on or off at any time. If you close it, the original system will continue to be used. Any data loss etc. You will not have.",
 'dwn_4'  => "Use for news",
 'dwn_5'  => "Used in article pages. Your attachments will be downloaded on separate page. You can use the following option for static pages",
 'dwn_6'  => "Use for static pages",

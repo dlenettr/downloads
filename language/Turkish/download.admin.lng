@@ -6,8 +6,6 @@ Translator info
 $lang = array_merge( $lang, array(
 'dwn_0'  => "Sitenize yüklediğiniz dosyaların ayrı sayfada indirilmesini sağlayabilirsiniz",
 'dwn_1'  => "Sistem Ayarları",
-'dwn_2'  => "Modülü Aktifleştir",
-'dwn_3'  => "Modülü istediğiniz zaman açıp kapatabilirsiniz. Kapattığınızda sistemin orjinali kullanılmaya devam edecektir. Herhangi bir veri kaybı vs. yaşamazsınız.",
 'dwn_4'  => "Makalelerde Kullan",
 'dwn_5'  => "Makaleye eklenmiş dosyalarınız için kullanılır. Sabit sayfalardaki kullanım durumu için aşağıdaki seçeneği kullanın. Sistem sabit sayfalar ve makaleler için ayrı ayrı ayarlama yapabilmenizi sağlar.",
 'dwn_6'  => "Sabit Sayfalarda Kullan",

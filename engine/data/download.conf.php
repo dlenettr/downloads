@@ -3,7 +3,6 @@
 //MWS Downloads Settings
 
 $dset = array (
-'down_on' => '1',
 'use_news' => '1',
 'use_static' => '1',
 'show_ads' => '1',

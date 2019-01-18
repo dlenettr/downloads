@@ -1,9 +1,9 @@
 <?php
 /*
 =============================================
- Name      : MWS Downloads v1.5
+ Name      : Downloads v1.7
  Author    : Mehmet Hanoğlu ( MaRZoCHi )
- Site      : http://dle.net.tr/   (c) 2015
+ Site      : https://mehmethanoglu.com.tr
  License   : MIT License
 =============================================
 */
@@ -29,7 +29,6 @@ if ( $action == "save" ) {
 	if ( $_REQUEST['user_hash'] == "" or $_REQUEST['user_hash'] != $dle_login_hash ) { die( "Hacking attempt! User not found" ); }
 
 	$save_con = $_POST['save_con'];
-	$save_con['down_on'] = intval($save_con['down_on']);
 	$save_con['use_news'] = intval($save_con['use_news']);
 	$save_con['use_static'] = intval($save_con['use_static']);
 	$save_con['sep_page'] = intval($save_con['sep_page']);
@@ -86,7 +85,7 @@ if ( $action == "save" ) {
 
 }
 
-echoheader( "<i class=\"fa fa-download\"></i> MWS Downloads", $lang['dwn_0'] );
+echoheader( "<i class=\"fa fa-download\"></i> Downloads", $lang['dwn_0'] );
 
 function showRow( $title = "", $description = "", $field = "", $indent = false ) {
 	if ( $indent ) { $_in = "<div class=\"ind_div\"></div>"; $_cl = " indented"; } else { $_in = ""; $_cl = ""; }
@@ -161,7 +160,6 @@ $(document).ready( function() {
 	<table class="table table-normal">
 HTML;
 
-	showRow( $lang['dwn_2'], $lang['dwn_3'], makeCheckBox( "save_con[down_on]", "{$dset['down_on']}" ) );
 	showRow( $lang['dwn_4'], $lang['dwn_5'], makeCheckBox( "save_con[use_news]", "{$dset['use_news']}" ) );
 	showRow( $lang['dwn_6'], $lang['dwn_7'], makeCheckBox( "save_con[use_static]", "{$dset['use_static']}" ) );
 	showRow( $lang['dwn_8'], $lang['dwn_9'], makeCheckBox( "save_con[sep_page]", "{$dset['sep_page']}" ) );

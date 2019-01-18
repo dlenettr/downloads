@@ -1,9 +1,9 @@
 <?php
 /*
 =============================================
- Name      : MWS Downloads v1.5
+ Name      : Downloads v1.7
  Author    : Mehmet Hanoğlu ( MaRZoCHi )
- Site      : http://dle.net.tr/   (c) 2015
+ Site      : https://mehmethanoglu.com.tr
  License   : MIT License
 =============================================
 */
@@ -16,15 +16,15 @@ global $config, $dset;
 
 include ENGINE_DIR . "/data/download.conf.php";
 
-if ( $dset['down_on'] && ( ( ! empty( $area ) && $dset['use_static'] ) || ( empty( $area ) && $dset['use_news'] ) ) ) {
+if ( ( ! empty( $area ) && $dset['use_static'] ) || ( empty( $area ) && $dset['use_news'] ) ) {
 
 	function replace_url( $url ) {
 		global $config;
 		if ( $config['allow_alt_url'] ) {
 			$url = str_replace( "&amp;area=static", "/static", $url );
-			return str_replace( "engine/download.php?id=", "file/", $url );
+			return str_replace( "index.php?do=download&id=", "file/", $url );
 		} else {
-			return str_replace( "engine/download.php?id=", "index.php?do=download&amp;id=", $url );
+			return str_replace( "index.php?do=download", "index.php?do=downloads", $url );
 		}
 	}
 
@@ -37,12 +37,12 @@ if ( $dset['down_on'] && ( ( ! empty( $area ) && $dset['use_static'] ) || ( empt
 		if ( $config['allow_alt_url'] ) {
 			return "href=\"" . $m[1] . "/file/" . md5( $dset['hash_key'] . $m[2] ) . "\"";
 		} else {
-			return "href=\"" . $m[1] . "index.php?do=download&amp;id=" . md5( $dset['hash_key'] . $m[2] ) . "\"";
+			return "href=\"" . $m[1] . "index.php?do=downloads&amp;id=" . md5( $dset['hash_key'] . $m[2] ) . "\"";
 		}
 	}
 
 	function replace_hashlink( $url ) {
-		return preg_replace_callback( "#href=\"(.*?)engine/download\.php\?id=([0-9]+)\"#", "_replace_hashlink", $url );
+		return preg_replace_callback( "#href=\"(.*?)index\.php\?do=download\&amp;id=([0-9]+)\"#", "_replace_hashlink", $url );
 	}
 
 	function replace_namelink( $url ) {
@@ -50,17 +50,14 @@ if ( $dset['down_on'] && ( ( ! empty( $area ) && $dset['use_static'] ) || ( empt
 		// print_r( $file_names );
 		// echo $url . " -- ";
 
-		// yapılacak - end
+		// yapılacak - start
 		if ( $config['allow_alt_url'] ) {
-			if ( strpos( $url, "area=static" ) !== false ) {
-
-			} else {
+			if ( strpos( $url, "area=static" ) === false ) {
 				preg_match( "#id=([0-9]+)#is", $url, $m );
-				return str_replace( "engine/download.php?id=" . $m[1], "file/" . $file_names[ $m[1] ], $url );
+				return str_replace( "index.php?do=download&id=" . $m[1], "file/" . $file_names[ $m[1] ], $url );
 			}
-
 		} else {
-			return str_replace( "engine/download.php?id=", "index.php?do=download&amp;id=", $url );
+			return str_replace( "index.php?do=download", "index.php?do=downloads", $url );
 		}
 		// yapılacak - end
 
@@ -86,5 +83,3 @@ if ( $dset['down_on'] && ( ( ! empty( $area ) && $dset['use_static'] ) || ( empt
 		$replace_2 = array_map( "external_url", $replace_2 );
 	}
 }
-
-?>

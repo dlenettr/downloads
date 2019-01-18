@@ -1,9 +1,9 @@
 <?php
 /*
 =============================================
- Name      : MWS Downloads v1.5
+ Name      : Downloads v1.7
  Author    : Mehmet Hanoğlu ( MaRZoCHi )
- Site      : http://dle.net.tr/   (c) 2015
+ Site      : https://mehmethanoglu.com.tr
  License   : MIT License
 =============================================
 */
@@ -461,5 +461,3 @@ if (
 
 	msgbox( $lang['dwn_5'], "<ul><li>{$lang['dwn_3']}</li></ul>" );
 }
-
-?>
