@@ -8,9 +8,9 @@
 	<versioncompare>greater</versioncompare>
 	<upgradeurl>https://raw.githubusercontent.com/dlenettr/downloads/master/release.json</upgradeurl>
 	<filedelete>1</filedelete>
-	<mysqlinstall><![CDATA[INSERT INTO {prefix}_admin_sections (name, icon, title, descr, allow_groups) VALUES ('download', 'engine/skins/images/downloads.png', 'Downloads v1.7', 'Sitenize yüklediğiniz dosyaların ayrı sayfada indirilmesini sağlayabilirsiniz', '1')]]></mysqlinstall>
+	<mysqlinstall><![CDATA[]]></mysqlinstall>
 	<mysqlupgrade><![CDATA[]]></mysqlupgrade>
-	<mysqlenable><![CDATA[]]></mysqlenable>
+	<mysqlenable><![CDATA[INSERT INTO {prefix}_admin_sections (name, icon, title, descr, allow_groups) VALUES ('download', 'engine/skins/images/downloads.png', 'Downloads v1.7', 'Sitenize yüklediğiniz dosyaların ayrı sayfada indirilmesini sağlayabilirsiniz', '1')]]></mysqlenable>
 	<mysqldisable><![CDATA[DELETE FROM {prefix}_admin_sections WHERE name = 'download';]]></mysqldisable>
 	<mysqldelete><![CDATA[DELETE FROM {prefix}_admin_sections WHERE name = 'download';]]></mysqldelete>
 	<file name="engine/engine.php">
