@@ -46,7 +46,7 @@ Sadece Makale Dosyaları için
 {related limit="10" template="relatednews"} : Makaleye ait benzer makaleler. Limit ve şablon parametresi
 ```
 
-Kontrol Tagların
+Kontrol Tagları
 ```
 [direct] Dosya linkine direkt olarak ulaşıldığında [/direct]
 [not-direct] Dosya linkine direkt olarak ulaşılmadığında [/not-direct]
