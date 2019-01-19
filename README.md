@@ -8,7 +8,7 @@ Eklenti olarak yüklediğiniz dosyaların ayrı sayfada indirilmesini sağlayabi
 
 ```bash
 # Downloads
-RewriteRule ^download/([0-9]+)/?(static)?$ index.php?do=download.php&id=$1&area=$2 [L]
+RewriteRule ^download/([0-9]+)/?(static)?$ index.php?do=download&id=$1&area=$2 [L]
 RewriteRule ^file/([0-9]+)$ index.php?do=downloads&id=$1 [L]
 RewriteRule ^file/([a-z0-9]{32})$ index.php?do=downloads&hash=$1 [L]
 RewriteRule ^file/([a-zA-Z0-9\w\-\.]+)$ index.php?do=downloads&name=$1 [L]
