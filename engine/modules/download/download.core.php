@@ -1,7 +1,7 @@
 <?php
 /*
 =============================================
- Name      : Downloads v1.7
+ Name      : Downloads v1.8
  Author    : Mehmet Hanoğlu ( MaRZoCHi )
  Site      : https://mehmethanoglu.com.tr
  License   : MIT License
@@ -421,6 +421,10 @@ if (
 		$dset['title'] = set_template( $dset['title'] );
 		$metatags['description'] = set_template( $dset['meta_desc'] );
 		$metatags['keywords'] = set_template( $dset['meta_key'] );
+
+
+		$row['id'] = $info['id'];
+		include ENGINE_DIR . "/modules/download/download.who.php";
 
 		if ( $dset['sep_page'] == "1" ) {
 			if ( $dset['dis_index'] ) $disable_index = "\n<meta name=\"robots\" content=\"noindex,nofollow\" />"; else $disable_index = "";

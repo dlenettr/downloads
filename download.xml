@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dleplugin>
+	<name>Downloads</name>
+	<description>Sitenize yüklediğiniz dosyaların ayrı sayfada indirilmesini sağlayabilirsiniz</description>
+	<icon>engine/skins/images/download.png</icon>
+	<version>1.8</version>
+	<dleversion>13.0</dleversion>
+	<versioncompare>greater</versioncompare>
+	<upgradeurl>https://raw.githubusercontent.com/dlenettr/downloads/master/release.json</upgradeurl>
+	<filedelete>1</filedelete>
+	<needplugin></needplugin>
+	<mysqlinstall><![CDATA[CREATE TABLE IF NOT EXISTS {prefix}_downloads_stats (
+    id int(11) NOT NULL AUTO_INCREMENT,
+    area tinyint(1) NOT NULL,
+    area_id int(11) NOT NULL,
+    user_id int(11) NOT NULL DEFAULT '0',
+    date varchar(15) NOT NULL DEFAULT '',
+    INDEX file_id_index (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;]]></mysqlinstall>
+	<mysqlupgrade><![CDATA[CREATE TABLE IF NOT EXISTS {prefix}_downloads_stats (
+    id int(11) NOT NULL AUTO_INCREMENT,
+    area tinyint(1) NOT NULL,
+    area_id int(11) NOT NULL,
+    user_id int(11) NOT NULL DEFAULT '0',
+    date varchar(15) NOT NULL DEFAULT '',
+    INDEX file_id_index (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;]]></mysqlupgrade>
+	<mysqlenable><![CDATA[INSERT INTO {prefix}_admin_sections (name, icon, title, descr, allow_groups) VALUES ('download', 'engine/skins/images/download.png', 'Downloads v1.8', 'Sitenize yüklediğiniz dosyaların ayrı sayfada indirilmesini sağlayabilirsiniz', '1')]]></mysqlenable>
+	<mysqldisable><![CDATA[DELETE FROM {prefix}_admin_sections WHERE name = 'download';]]></mysqldisable>
+	<mysqldelete><![CDATA[DELETE FROM {prefix}_admin_sections WHERE name = 'download';
+
+DROP TABLE IF EXISTS {prefix}_downloads_stats;]]></mysqldelete>
+	<phpinstall><![CDATA[]]></phpinstall>
+	<phpupgrade><![CDATA[]]></phpupgrade>
+	<phpenable><![CDATA[]]></phpenable>
+	<phpdisable><![CDATA[]]></phpdisable>
+	<phpdelete><![CDATA[]]></phpdelete>
+	<file name="engine/engine.php">
+		<operation action="before">
+			<searchcode><![CDATA[case "changemail" :]]></searchcode>
+			<replacecode><![CDATA[// Downloads
+	case "downloads" :
+		include ENGINE_DIR . '/modules/download/download.core.php';
+		break;
+// Downloads]]></replacecode>
+		</operation>
+		<operation action="after">
+			<searchcode><![CDATA[elseif ($do == 'tags') $nam_e = stripslashes($tag);]]></searchcode>
+			<replacecode><![CDATA[// Downloads
+elseif ($do == 'download') {
+	$nam_e = $dset['name'];
+	$titl_e = $dset['title'];
+	$metatags['header_title'] = $dset['header_title'];
+}
+// Downloads]]></replacecode>
+		</operation>
+	</file>
+	<file name="engine/modules/functions.php">
+		<operation action="before">
+			<searchcode><![CDATA[$story = str_replace ( $find_1, $replace_1, $story );]]></searchcode>
+			<replacecode><![CDATA[// Downloads
+	include ENGINE_DIR . "/modules/download/download.func.php";
+// Downloads]]></replacecode>
+		</operation>
+		<operation action="replace">
+			<searchcode><![CDATA[global $db, $config, $lang, $user_group, $member_id, $_TIME, $news_date;]]></searchcode>
+			<replacecode><![CDATA[global $db, $config, $lang, $user_group, $member_id, $_TIME, $news_date, $file_names;]]></replacecode>
+		</operation>
+		<operation action="after">
+			<searchcode><![CDATA[$find_2[] = "#\[attachment={$row['id']}:(.+?)\]#i";]]></searchcode>
+			<replacecode><![CDATA[$file_names[ $row['id'] ] = $db->safesql( $row['name'] );]]></replacecode>
+		</operation>
+		<operation action="replace">
+			<searchcode><![CDATA[$db->query( "SELECT * FROM " . PREFIX . "_files]]></searchcode>
+			<replacecode><![CDATA[$attach_query = $db->query( "SELECT * FROM " . PREFIX . "_files]]></replacecode>
+		</operation>
+		<operation action="replace">
+			<searchcode><![CDATA[$db->query( "SELECT * FROM " . PREFIX . "_static_files]]></searchcode>
+			<replacecode><![CDATA[$attach_query = $db->query( "SELECT * FROM " . PREFIX . "_static_files]]></replacecode>
+		</operation>
+		<operation action="before">
+			<searchcode><![CDATA[$tpl->compile( 'attachment' );]]></searchcode>
+			<replacecode><![CDATA[		// Downloads - start
+		if ( strpos( $tpl->copy_template, '{who-downloaded}' ) !== false ) {
+			include ENGINE_DIR . "/modules/download/download.who.php";
+		}
+		// Downloads - end]]></replacecode>
+		</operation>
+	</file>
+	<file name="engine/download.php">
+		<operation action="before">
+			<searchcode><![CDATA[$db->close();]]></searchcode>
+			<replacecode><![CDATA[// Downloads - start
+if ( !$file->range ) {
+	include ENGINE_DIR . "/modules/download/download.save.php";
+}
+// Downloads - end]]></replacecode>
+		</operation>
+	</file>
+</dleplugin>

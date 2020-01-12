@@ -1,7 +1,7 @@
 # Downloads
-<img src="https://img.shields.io/badge/dle-13.0+-007dad.svg"> <img src="https://img.shields.io/badge/lang-tr-ce600f.svg"> <img src="https://img.shields.io/badge/lang-en-ce600f.svg"> <img src="https://img.shields.io/badge/license-GPL-60ce0f.svg">
+<img src="https://img.shields.io/badge/dle-13.0+-007dad.svg"> <img src="https://img.shields.io/badge/lang-tr-ce600f.svg"> <img src="https://img.shields.io/badge/lang-en-ce600f.svg"> <img src="https://img.shields.io/badge/license-MIT-60ce0f.svg">
 
-Eklenti olarak yüklediğiniz dosyaların ayrı sayfada indirilmesini sağlayabilirsiniz. Makale ve sabit sayfalarda kullanılabilir. Eklentiye indirmek için tıklandığında yeni bir sayfa açılır ve aynı şekilde buradan indirilmesini sağlayabilirsiniz. İsterseniz tamamen ayrı bir sayfa tasarımı da kullanabilirsiniz.
+Eklenti olarak yüklediğiniz dosyaların ayrı sayfada indirilmesini sağlayabilirsiniz. Makale ve sabit sayfalarda kullanılabilir. Eklentiye indirmek için tıklandığında yeni bir sayfa açılır ve aynı şekilde buradan indirilmesini sağlayabilirsiniz. İsterseniz tamamen ayrı bir sayfa tasarımı da kullanabilirsiniz. Ayrıca kullanıcıların indirme işlemlerini kaydedip "Kimler İndirdi?" adı altında gösterebilirsiniz.
 
 ## Kurulum
 **1)** .htaccess dosyasını açarak `RewriteEngine On` satırının altına ekleyin
@@ -46,7 +46,7 @@ Sadece Makale Dosyaları için
 {related limit="10" template="relatednews"} : Makaleye ait benzer makaleler. Limit ve şablon parametresi
 ```
 
-Kontrol Tagların
+Kontrol Tagları
 ```
 [direct] Dosya linkine direkt olarak ulaşıldığında [/direct]
 [not-direct] Dosya linkine direkt olarak ulaşılmadığında [/not-direct]
@@ -76,14 +76,37 @@ Bu şekilde ( pdf, doc, ppt, pptx, docx eklenmiş ) düzenleme yapabilirsiniz.
 `(pdf|doc|ppt|pptx|docx|avi|divx|mp3|mp4|flv|swf|wmv|m4v|m4a|mov|mkv|3gp|f4v)`
 
 
+
+Dilerseniz kullanıcıların yaptığı indirme işlemlerini kaydedip, dosyayı kimlerin ne zaman indirdiğini gösterebilirsiniz. Bu ayarın kaydetme ve gösterme işlemlerini admin panelden açıp kapatabilirsiniz.
+
+Gösterme işlemini yapabilmek için **attachment.tpl** veya **download.tpl** dosyalarına `{who-downloaded}` tagını eklemeniz yeterli olacaktır. Bu tagın içerisindeki her satırı/kaydı istediğiniz şekilde özelleştirebilirsiniz.
+
+`download-who.tpl` dosyasında geçerli taglar :
+
+```
+Son indirme tarihi      : {down-date}, Özel format için: {down-date=d.m.Y}
+Kullanıcı adı           : {user-name}
+Kullanıcı adı (renkli)  : {user-name-colored}
+Kullanıcı avatarı       : {user-foto}
+Kullanıcı profil adresi : {user-url}
+Kullanıcı profil popup  : <a href="{user-url}" onclick="{user-url-popup}">{user-name-colored}</a>
+Grup adı                : {user-group}
+Grup adı (renkli)       : {user-group-colored}
+Grup ikon adresi        : {user-group-icon}
+```
+
+
+
 ## Ekran Görüntüleri
-![Ekran 1](docs/screen1.png?raw=true)
-![Ekran 2](docs/screen2.png?raw=true)
+
+![Ekran 1](./docs/screen1.png?raw=true)
+![Ekran 2](./docs/screen2.png?raw=true)
 
 ## Tarihçe
 
 | Version | Tarih | Uyumluluk | Yenilikler |
 | ------- | ----- | --------- | ---------- |
+| **1.8** | 29.09.2019 | 13.0+ | İndirme işlemleri için kayıt ve gösterim özelliği eklendi. (Kimler İndirdi?) |
 | **1.7** | 18.01.2019 | 13.0+ | Eklenti sistemine geçildi. DLE 13.0 ve üstü sürümler için uyarlama yapıldı. |
 | **1.6.1** | 18.06.2018 | 12.1, 12.0 | İngilizce çeviri eklendi |
 | **1.6** | 14.01.2018 | 12.1, 12.0 | DLE 12.0 için uyumluluk eklendi.<br>Yeni ilave alan türlerinin çalışması sağlandı.<br>ID ile erişim hatası giderildi. |

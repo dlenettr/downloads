@@ -52,6 +52,12 @@
 		[f-ext=zip]<p>Bu bir zip dosyası</p>[/f-ext]
 		<p>Reklam Alanı</p>
 		<p>[xfgiven_deneme] [xfvalue_deneme] [/xfgiven_deneme]</p>
+		<div id="who-downloaded">
+			<p><b>Kimler İndirdi?</b></p>
+			<div>
+				{who-downloaded}
+			</div>
+		</div>
 	</div>
 	<div class="clr"></div>
 	<div class="dl-file">
@@ -81,7 +87,7 @@
 [timer]
 <script>
 $(document).ready(function() {
-	var count = {f-counter};
+	var count = parseInt('{f-counter}');
 	var link = $("#dlink").val();
 	$(".dl-counter").html('<span id="counter">0:' + count + '</span>');
 	function counter() {

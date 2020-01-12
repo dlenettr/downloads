@@ -60,6 +60,14 @@ body { width: 900px; margin: auto; margin-top: 150px; }
 	</div>
 	<div class="dl-show">
 		{banner_336x280}
+
+		<div id="who-downloaded">
+			<p><b>Kimler İndirdi?</b></p>
+			<div>
+				{who-downloaded}
+			</div>
+		</div>
+
 	</div>
 	<div class="clr"></div>
 	<div class="dl-file">
@@ -87,7 +95,7 @@ Benzer Makaleler : <br />
 [timer]
 <script>
 $(document).ready(function() {
-	var count = {f-counter};
+	var count = parseInt('{f-counter}');
 	var link = $("#dlink").val();
 	$(".dl-counter").html('<span id="counter">0:' + count + '</span>');
 	function counter() {

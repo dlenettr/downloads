@@ -52,6 +52,13 @@ $lang = array_merge( $lang, array(
 'dwn_47' => "Use ID",
 'dwn_48' => "Use ID-Hash",
 'dwn_49' => "Use file name",
+'dwn_50' => "Save download log",
+'dwn_51' => "Save download logs for all users. If you enable this setting, performance of your site will be decreased.",
+'dwn_52' => "Don't save",
+'dwn_53' => "Save to database",
+'dwn_54' => "Show download logs",
+'dwn_55' => "You can show, who downloaded any file. If you want to enable this feature, you need to add this tag {who-downloaded} into attachment.tpl or download.tpl files.",
+
 ) );
 
 ?>

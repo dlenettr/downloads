@@ -1,7 +1,7 @@
 <?php
 /*
 =============================================
- Name      : Downloads v1.7
+ Name      : Downloads v1.8
  Author    : Mehmet Hanoğlu ( MaRZoCHi )
  Site      : https://mehmethanoglu.com.tr
  License   : MIT License

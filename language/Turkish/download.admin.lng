@@ -3,7 +3,7 @@
 Translator info
 */
 
-$lang = array_merge( $lang, array(
+$lang = array_merge( $lang, [
 'dwn_0'  => "Sitenize yüklediğiniz dosyaların ayrı sayfada indirilmesini sağlayabilirsiniz",
 'dwn_1'  => "Sistem Ayarları",
 'dwn_4'  => "Makalelerde Kullan",
@@ -52,6 +52,12 @@ $lang = array_merge( $lang, array(
 'dwn_47' => "Dosya ID kullan",
 'dwn_48' => "Dosya ID-Hash kullan",
 'dwn_49' => "Dosya Adı kullan",
-) );
+'dwn_50' => "İndirme kaydı tut",
+'dwn_51' => "Kullanıcıların dosya indirme kayıtlarını tut. Bu işlem yüksek sayıda indirme işlemi olması durumunda sitenizi yavaşlatabilir.",
+'dwn_52' => "Kayıt tutma",
+'dwn_53' => "Veritabanına kaydet",
+'dwn_54' => "İndirme kayıtlarını göster",
+'dwn_55' => "Tüm dosyaların kimler tarafından indirildiğini gösterebilirsiniz. Bu özelliği aktif etmek için attachment.tpl'e veya download.tpl dosyasına {who-downloaded} etiketini eklemelisiniz",
+] );
 
 ?>
